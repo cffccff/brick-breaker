@@ -8,6 +8,9 @@ TagManager:
   - Unbreakable
   - Transparent
   - MenuOptionWithChild
+  - Paddle
+  - Potions
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -15,9 +18,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Potions
+  - Ball
+  - Brick
   - 
   - 
   - 

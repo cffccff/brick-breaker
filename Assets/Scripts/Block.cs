@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Block : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class Block : MonoBehaviour
 
     // state
     private int _currentHits = 0;
-    
+
+    //Prefabs potions drop
+    [SerializeField] List<GameObject> listOfPotion;
+    //chance to drop potion
     void Start()
     {
         // selects other game object without SCENE binding: programatically via API
@@ -25,6 +29,10 @@ public class Block : MonoBehaviour
 
         // increment the block counter if the block's breakable
         if (CompareTag("Breakable")) _levelController.IncrementBlocksCounter();
+
+       
+     
+
     }
     
     /**
@@ -97,8 +105,39 @@ public class Block : MonoBehaviour
 
         // increments destroyed blocks of the level
         _levelController.DecrementBlocksCounter();
+        DropPotion();
     }
+    private void DropPotion()
+    {
+        //use number from 1 to 10. Set the choose_number = any number in 1 =>10 in this script i set choose_number = 1.
+        //random_number = Random from 1=>10. and then compare it with choose_number. So we have 10 percentage for drop item
+        int choose_number = 1;
+        //test Empty potion
+        int random_number = Random.Range(1, 10);
+        if (random_number == choose_number)
+        {
+          // int index = 2;
+            int index = Random.Range(0, 4);
+            
+            switch (index)
+            {
+                case 0:
+                    Instantiate(listOfPotion[index], this.transform.position, Quaternion.identity);
+                    break;
+                case 1:
+                    Instantiate(listOfPotion[index], this.transform.position, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(listOfPotion[index], this.transform.position, Quaternion.identity);
+                    break;
+                case 3:
+                    Instantiate(listOfPotion[index], this.transform.position, Quaternion.identity);
+                    break;
+            }
+        }
 
+        // 
+    }
     /**
      * Plays VFX and SFX when a block is destroyed.
      */
@@ -110,6 +149,7 @@ public class Block : MonoBehaviour
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
         Destroy(this.gameObject);
+       
     }
 
     /**
@@ -122,5 +162,7 @@ public class Block : MonoBehaviour
         Quaternion blockRotation = this.transform.rotation;
         
         GameObject destroyedBlockParticles = Instantiate(destroyedBlockParticlesVFX, blockPosition, blockRotation);
+       
+      
     }
 }
