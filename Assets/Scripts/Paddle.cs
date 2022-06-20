@@ -98,6 +98,7 @@ public class Paddle : MonoBehaviour
             _ball._rigidBody2D.velocity -= _ball._rigidBody2D.velocity * 10 / 100;
         }
     }
+    // this function will increase velocity of ball 
     private void ResetSpeedBluePotionEffect()
     {
         float x, y;
@@ -106,16 +107,25 @@ public class Paddle : MonoBehaviour
         Debug.Log("=====================Begin Reset Speed Blue Potion ========================");
         Debug.Log("Value velocity before calculate:" + _ball._rigidBody2D.velocity);
 
+        // because this author use Velocity to move the ball, so the ball's velocity will change everytime the ball collides with something
+        // so i have to take the ball's velocity and increase it 10% because the Blue potion is out of effect
+
+        //take the value of ball's velocity
         Vector2 vector = AbsVector(_ball._rigidBody2D.velocity);
+        //calculated the the value of 10% of ball's velocity 
         vector = vector * 10 / 100;
+        //Because the value of ball's velocity have x and y, and it is negative or positive. So if i want to increase the ball's velocity, i have to know whenever to minus or plus the 10% value of ball's velocity
+        // Example if x =10, to increase it, just plus 10% value
         if (x >= 0.00001f)
         {
             x += vector.x;
         }
+        //but if x=-10, to increase it, just minus 10% value
         else
         {
             x -= vector.x;
         }
+        //same thing go for y
         if (y >= 0.00001f)
         {
             y += vector.y;
@@ -124,8 +134,10 @@ public class Paddle : MonoBehaviour
         {
             y -= vector.y;
         }
+        //after calculated set the ball's velocity = new Velocity have more velocity 10%
         _ball._rigidBody2D.velocity = new Vector2(x, y);
         Debug.Log("Value velocity after calculated:" + _ball._rigidBody2D.velocity);
+        //remove index for check condition, ball's velocity can be effected by 5 times
         listOfChangeSpeed.RemoveAt(0);
         Debug.Log("=====================End========================");
     }
@@ -159,12 +171,17 @@ public class Paddle : MonoBehaviour
             else if (collision.gameObject.name.StartsWith("BlueBottlePotion"))
             {
                 Debug.Log("Blue");
+                //if ball had taken the effect of Blue potion smaller 5 times
                 if (listOfChangeSpeed.Count <= 5)
                 {
                     Debug.Log("Velocity before take Blue potion: "+ _ball._rigidBody2D.velocity);
+                    //calculated the value of 10% of ball's velocity
                     Vector2 vector = _ball._rigidBody2D.velocity * 10 / 100;
+                    //decrease ball's velocity
                     _ball._rigidBody2D.velocity -= vector;
+                    // add new value to condition check effect blue potion taken 
                     listOfChangeSpeed.Add(vector);
+                    //after 10s run this function ResetSpeedBluePotionEffect
                     Invoke(nameof(ResetSpeedBluePotionEffect), 10f);
                     Debug.Log("Velocity after took Blue potion: " + _ball._rigidBody2D.velocity);
                 }

@@ -113,7 +113,7 @@ public class Block : MonoBehaviour
         //random_number = Random from 1=>10. and then compare it with choose_number. So we have 10 percentage for drop item
         int choose_number = 1;
         //test Empty potion
-        int random_number = Random.Range(1, 4);
+        int random_number = Random.Range(1, 10);
         if (random_number == choose_number)
         {
            //int index = 3;
