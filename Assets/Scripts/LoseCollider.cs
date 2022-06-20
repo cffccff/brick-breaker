@@ -32,6 +32,8 @@ public class LoseCollider : MonoBehaviour
     private void FixBallOnPaddleAfterLoss()
     {
         var ball = FindObjectOfType<Ball>();
+        var paddle = FindObjectOfType<Paddle>();
+        paddle.ResetAllPotionEffect();
         ball.HasBallBeenShot = false;
     }
 }

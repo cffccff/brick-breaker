@@ -6,13 +6,13 @@ public class Paddle : MonoBehaviour
 {
     [SerializeField]
     public float minRelativePosX = 1f;  // assumes paddle size of 1 relative unit
-    
+
     [SerializeField]
     public float maxRelativePosX = 15f;  // assumes paddle size of 1 relative unit
-    
+
     [SerializeField]
     public float fixedRelativePosY = .64f;  // paddle does not move on the Y directiob
-    
+
     // Unity units of the WIDTH of the screen (e.g. 16)
     [SerializeField]
     public float screenWidthUnits = 16;
@@ -22,55 +22,34 @@ public class Paddle : MonoBehaviour
     private bool isInGearPotion = false;
     //to handle time and function of BluePotion
     private float timeBlue = 10;
-    private bool isInBluePotion = false;
 
-   [SerializeField] float paddleSpeed = 7;
-   
+    private Ball _ball;
 
-    List<float> listOfChangeSpeed;
+    List<Vector2> listOfChangeSpeed;
     private void Awake()
     {
-        listOfChangeSpeed = new List<float>();
+        listOfChangeSpeed = new List<Vector2>();
+        _ball = FindObjectOfType<Ball>();
     }
     // Start is called before the first frame update
     void Start()
     {
-       
         float startPosX = ConvertPixelToRelativePosition(screenWidthUnits / 2, Screen.width);
         transform.position = GetUpdatedPaddlePosition(startPosX);
-       
-    } 
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A)&&transform.position.x> minRelativePosX)
-        {
-            transform.position -= new Vector3(paddleSpeed * Time.deltaTime, 0,0);
-        }
-        if (Input.GetKey(KeyCode.D)&&transform.position.x< maxRelativePosX)
-        {
-            transform.position += new Vector3(paddleSpeed * Time.deltaTime, 0, 0);
-        }
-        if(transform.localScale.x > 2)
-        {
-            minRelativePosX =2.8f;
-            maxRelativePosX = 13.2f; 
-        }
-        else
-        {
-            minRelativePosX = 1f;
-            maxRelativePosX = 15f;
-        }
-         // var relativePosX = ConvertPixelToRelativePosition(Input.mousePosition.x, Screen.width);
-
-       //   transform.position = GetUpdatedPaddlePosition(relativePosX);
+        var relativePosX = ConvertPixelToRelativePosition(Input.mousePosition.x, Screen.width);
+        transform.position = GetUpdatedPaddlePosition(relativePosX);
         UpdateAndCheckGearPotion();
     }
-    private void ResetStatusOfPaddle()
+    public void ResetAllPotionEffect()
     {
         RemoveGearPotionEffect();
-        RemoveBlueBottleEffec();
+        RemoveBlueBottleEffect();
     }
     private void RemoveGearPotionEffect()
     {
@@ -83,7 +62,7 @@ public class Paddle : MonoBehaviour
         if (isInGearPotion == true)
         {
             timeGear -= Time.deltaTime;
-            
+
         }
         if (timeGear <= 0)
         {
@@ -92,36 +71,63 @@ public class Paddle : MonoBehaviour
 
         }
     }
-    private void RemoveBlueBottleEffec()
+    private void RemoveBlueBottleEffect()
     {
-        paddleSpeed = 7f;
         CancelInvoke();
-        listOfChangeSpeed = new List<float>();
+        ResetSpeedEmptyPotionEffect();
+        listOfChangeSpeed = new List<Vector2>();
     }
     public Vector2 GetUpdatedPaddlePosition(float relativePosX)
     {
         // clamps the X position
         float clampedRelativePosX = Mathf.Clamp(relativePosX, minRelativePosX, maxRelativePosX);
-        
+
         Vector2 newPaddlePosition = new Vector2(clampedRelativePosX, fixedRelativePosY);
         return newPaddlePosition;
     }
-    
+
     public float ConvertPixelToRelativePosition(float pixelPosition, int screenWidth)
-    { 
-        var relativePosition = pixelPosition/screenWidth * screenWidthUnits;
+    {
+        var relativePosition = pixelPosition / screenWidth * screenWidthUnits;
         return relativePosition;
     }
-  
-   private void MinusSpeed()
+    private void ResetSpeedEmptyPotionEffect()
     {
-        // float round = Mathf.Round(listOfChangeSpeed[0]);
-        paddleSpeed -= listOfChangeSpeed[0];
-        listOfChangeSpeed.RemoveAt(0);
-        foreach( float number in listOfChangeSpeed)
+       for(int i=0;i <= listOfChangeSpeed.Count-1; i++)
         {
-            Debug.Log(number);
+            _ball._rigidBody2D.velocity -= _ball._rigidBody2D.velocity * 10 / 100;
         }
+    }
+    private void ResetSpeedBluePotionEffect()
+    {
+        float x, y;
+        x = _ball._rigidBody2D.velocity.x;
+        y = _ball._rigidBody2D.velocity.y;
+        Debug.Log("=====================Begin Reset Speed Blue Potion ========================");
+        Debug.Log("Value velocity before calculate:" + _ball._rigidBody2D.velocity);
+
+        Vector2 vector = AbsVector(_ball._rigidBody2D.velocity);
+        vector = vector * 10 / 100;
+        if (x >= 0.00001f)
+        {
+            x += vector.x;
+        }
+        else
+        {
+            x -= vector.x;
+        }
+        if (y >= 0.00001f)
+        {
+            y += vector.y;
+        }
+        else
+        {
+            y -= vector.y;
+        }
+        _ball._rigidBody2D.velocity = new Vector2(x, y);
+        Debug.Log("Value velocity after calculated:" + _ball._rigidBody2D.velocity);
+        listOfChangeSpeed.RemoveAt(0);
+        Debug.Log("=====================End========================");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -141,41 +147,38 @@ public class Paddle : MonoBehaviour
                 {
                     timeGear = 10;
                 }
-
-
             }
-
             else if (collision.gameObject.name.StartsWith("HeartPotion"))
             {
                 Debug.Log("Heart");
-                if (gameSession.PlayerLives <5)
+                if (gameSession.PlayerLives < 5)
                 {
                     gameSession.PlayerLives++;
-
                 }
-
-
             }
             else if (collision.gameObject.name.StartsWith("BlueBottlePotion"))
             {
                 Debug.Log("Blue");
-                float speedChange = paddleSpeed * 30 / 100;
-                speedChange = Mathf.Round(speedChange);
-                paddleSpeed += speedChange;
-                listOfChangeSpeed.Add(speedChange);
-                Invoke("MinusSpeed", 10f);
-                
+                if (listOfChangeSpeed.Count <= 5)
+                {
+                    Debug.Log("Velocity before take Blue potion: "+ _ball._rigidBody2D.velocity);
+                    Vector2 vector = _ball._rigidBody2D.velocity * 10 / 100;
+                    _ball._rigidBody2D.velocity -= vector;
+                    listOfChangeSpeed.Add(vector);
+                    Invoke(nameof(ResetSpeedBluePotionEffect), 10f);
+                    Debug.Log("Velocity after took Blue potion: " + _ball._rigidBody2D.velocity);
+                }
             }
-            else if(collision.gameObject.name.StartsWith("EmptyBottlePotion"))
+            else if (collision.gameObject.name.StartsWith("EmptyBottlePotion"))
             {
                 Debug.Log("Empty");
-                ResetStatusOfPaddle();
-
+                ResetAllPotionEffect();
             }
-          
             Destroy(collision.gameObject);
         }
-
     }
-   
+    public Vector2 AbsVector(Vector2 vector)
+    {
+        return new Vector2(Mathf.Abs(vector.x), Mathf.Abs(vector.y));
+    }
 }

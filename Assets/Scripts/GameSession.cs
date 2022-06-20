@@ -17,7 +17,9 @@ public class GameSession : MonoBehaviour
     public int PlayerLives { get; set; }
     public int PointsPerBlock { get; set; }
     public float GameSpeed { get; set; }
-    
+
+    public GameObject prefab;
+    public Ball _ball;
     /**
      * Singleton implementation.
      */
@@ -56,6 +58,17 @@ public class GameSession : MonoBehaviour
         playerScoreText.text = this.PlayerScore.ToString();
         gameLevelText.text = this.GameLevel.ToString();
         playerLivesText.text = this.PlayerLives.ToString();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ItemFall();
+          
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            Debug.Log("Right now Velocity of ball: "+_ball._rigidBody2D.velocity);
+        }
+
     }
 
     /**
@@ -66,5 +79,10 @@ public class GameSession : MonoBehaviour
     {
         this.PlayerScore += blockMaxHits * this.PointsPerBlock;
         playerScoreText.text = this.PlayerScore.ToString();
+    }
+
+    public void ItemFall()
+    {
+        Instantiate(prefab,new Vector2(5,10), Quaternion.identity);
     }
 }
