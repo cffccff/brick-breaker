@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
@@ -18,25 +19,39 @@ public class GameSession : MonoBehaviour
     public int PointsPerBlock { get; set; }
     public float GameSpeed { get; set; }
 
-    public GameObject prefab;
+    private Scene scene;
     public Ball _ball;
     /**
      * Singleton implementation.
      */
     private void Awake() 
-    { 
+    {
         // this is not the first instance so destroy it!
-        if (_instance != null && _instance != this)
-        { 
-            Destroy(this.gameObject);
-            return;
-        }
-        
-        // first instance should be kept and do NOT destroy it on load
+        //if (_instance != null && _instance != this)
+        //{
+        //    Destroy(this.gameObject);
+        //    return;
+        //}
+
+        //first instance should be kept and do NOT destroy it on load
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this.gameObject);
+        scene = SceneManager.GetActiveScene();
+        SetValueGameSession();
     }
-    
+    public int GetSceneLevel(Scene scene)
+    {
+        string name = scene.name;
+        name = name.Substring(5, name.Length - 5);
+        return int.Parse(name);
+    }
+    private void SetValueGameSession()
+    {
+        GameLevel = GetSceneLevel(scene);
+        PlayerLives = 4;
+        PointsPerBlock = 200;
+        GameSpeed = 0.8f;
+    }
     /**
      * Before first frame.
      */
@@ -58,11 +73,6 @@ public class GameSession : MonoBehaviour
         playerScoreText.text = this.PlayerScore.ToString();
         gameLevelText.text = this.GameLevel.ToString();
         playerLivesText.text = this.PlayerLives.ToString();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ItemFall();
-          
-        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
@@ -79,10 +89,5 @@ public class GameSession : MonoBehaviour
     {
         this.PlayerScore += blockMaxHits * this.PointsPerBlock;
         playerScoreText.text = this.PlayerScore.ToString();
-    }
-
-    public void ItemFall()
-    {
-        Instantiate(prefab,new Vector2(5,10), Quaternion.identity);
     }
 }

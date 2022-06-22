@@ -11,7 +11,7 @@ public class GameSessionLoader : MonoBehaviour
      */
     void Start()
     {
-        this._gameSession = GameSession.Instance;
+     //   this._gameSession = GameSession.Instance;
         this._gameConfig = GameConfig.Instance;
         StartGameSession();
     }

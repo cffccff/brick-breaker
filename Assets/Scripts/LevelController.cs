@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class LevelController : MonoBehaviour
     [SerializeField] int blocksCounter;
 
     // state
-    private SceneLoader _sceneLoader;
-    
+    //  private SceneLoader _sceneLoader;
+    private Scene scene;
     private void Start()
     {
-        _sceneLoader = FindObjectOfType<SceneLoader>();
+        // _sceneLoader = FindObjectOfType<SceneLoader>();
+        scene = SceneManager.GetActiveScene();
     }
 
     public void IncrementBlocksCounter()
@@ -35,12 +37,17 @@ public class LevelController : MonoBehaviour
             // check for game over
             if (gameSession.GameLevel >= NUMBER_OF_GAME_LEVELS)
             {
-                _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
+ //               _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
+                SceneManager.LoadScene("GameOver");
             }
 
             // increases game level
-            gameSession.GameLevel++;
-            _sceneLoader.LoadNextScene();
+            // gameSession.GameLevel++;
+            int level = gameSession.GetSceneLevel(scene);
+            level++;
+            PlayerPrefs.SetInt("currentLevel", level);
+            Debug.Log("Player unlock level:" + level);
+            SceneManager.LoadScene("LevelMap");
         }
     }
     
