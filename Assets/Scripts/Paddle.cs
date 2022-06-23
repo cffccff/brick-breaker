@@ -18,10 +18,10 @@ public class Paddle : MonoBehaviour
     public float screenWidthUnits = 16;
 
     //to handle time and function of GearPotion
-    private float timeGear = 10;
+    private float timeGearPotion = 10;
     private bool isInGearPotion = false;
     //to handle time and function of BluePotion
-    private float timeBlue = 10;
+    private float timeBluePotion = 10f;
 
     private Ball _ball;
 
@@ -54,17 +54,17 @@ public class Paddle : MonoBehaviour
     private void RemoveGearPotionEffect()
     {
         isInGearPotion = false;
-        transform.localScale = new Vector3(1.45f, 1, 1);
-        timeGear = 10;
+        transform.localScale = new Vector3(1f, 1, 1);
+        timeGearPotion = 10;
     }
     private void UpdateAndCheckGearPotion()
     {
         if (isInGearPotion == true)
         {
-            timeGear -= Time.deltaTime;
+            timeGearPotion -= Time.deltaTime;
 
         }
-        if (timeGear <= 0)
+        if (timeGearPotion <= 0)
         {
             RemoveGearPotionEffect();
 
@@ -157,7 +157,7 @@ public class Paddle : MonoBehaviour
                 }
                 else
                 {
-                    timeGear = 10;
+                    timeGearPotion = 10;
                 }
             }
             else if (collision.gameObject.name.StartsWith("HeartPotion"))
@@ -182,7 +182,7 @@ public class Paddle : MonoBehaviour
                     // add new value to condition check effect blue potion taken 
                     listOfChangeSpeed.Add(vector);
                     //after 10s run this function ResetSpeedBluePotionEffect
-                    Invoke(nameof(ResetSpeedBluePotionEffect), 10f);
+                    Invoke(nameof(ResetSpeedBluePotionEffect), timeBluePotion);
                     Debug.Log("Velocity after took Blue potion: " + _ball._rigidBody2D.velocity);
                 }
             }

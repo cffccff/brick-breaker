@@ -9,7 +9,6 @@ public class Ball : MonoBehaviour
     
     // fields
     [SerializeField] private Vector2 initialBallSpeed = new Vector2(2f, 10f);
-    [SerializeField] private float bounceRandomnessFactor = 0.5f;
     [SerializeField] private AudioClip[] bumpAudioClips;
     
     private Paddle _paddle;

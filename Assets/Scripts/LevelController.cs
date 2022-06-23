@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    private readonly string GAME_OVER_SCENE_NAME = "Scenes/GameOver";
     private readonly int NUMBER_OF_GAME_LEVELS = 3;
     
     // UI elements
@@ -25,7 +24,10 @@ public class LevelController : MonoBehaviour
     {
         blocksCounter++;
     }
-    
+    public int GetBlocksCounter()
+    {
+        return blocksCounter;
+    }
     public void DecrementBlocksCounter()
     {
         blocksCounter--;
@@ -37,16 +39,21 @@ public class LevelController : MonoBehaviour
             // check for game over
             if (gameSession.GameLevel >= NUMBER_OF_GAME_LEVELS)
             {
- //               _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
                 SceneManager.LoadScene("GameOver");
             }
+            Debug.Log("Win");
+            int currentLevel = PlayerPrefs.GetInt("currentLevel");
+            int level = PlayerPrefs.GetInt("SelectedLevel");
+            if(level == currentLevel)
+            {
+                level++;
+                PlayerPrefs.SetInt("currentLevel", level);
+                Debug.Log("Player unlock level:" + level);
+            }
 
-            // increases game level
-            // gameSession.GameLevel++;
-            int level = gameSession.GetSceneLevel(scene);
-            level++;
-            PlayerPrefs.SetInt("currentLevel", level);
-            Debug.Log("Player unlock level:" + level);
+           // var pool = Pool.Instance;
+          //  pool.ReturnToPoolAction();
+          
             SceneManager.LoadScene("LevelMap");
         }
     }

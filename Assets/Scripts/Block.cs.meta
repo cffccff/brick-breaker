@@ -3,7 +3,10 @@ guid: 2cdd846b6396e41a8a0438d2463793cd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - destroyedBlockSound: {instanceID: 0}
+  - destroyedBlockParticlesVFX: {fileID: 4668744615842279802, guid: 763fbccf87ffe4cab81bb6cf610ab765,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

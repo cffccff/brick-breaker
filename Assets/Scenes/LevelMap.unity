@@ -988,6 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scroller: {fileID: 1665869766}
+  pool: {fileID: 0}
   cellViewPrefab: {fileID: 625400930898665892, guid: ff1f23dc4a609a442b470a2eb4257ee2,
     type: 3}
   totalStarTxt: {fileID: 1123627714}

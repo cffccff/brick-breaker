@@ -28,6 +28,7 @@ public class Block : MonoBehaviour
         _soundPosition = FindObjectOfType<Camera>().transform.position;
 
         // increment the block counter if the block's breakable
+     
         if (CompareTag("Breakable")) _levelController.IncrementBlocksCounter();
 
        
@@ -148,7 +149,8 @@ public class Block : MonoBehaviour
 
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
-        Destroy(this.gameObject);
+      // this.gameObject.SetActive(false);
+      Destroy(this.gameObject);
        
     }
 

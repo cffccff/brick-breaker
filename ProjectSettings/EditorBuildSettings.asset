@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelMap.unity
     guid: 214a6b265ce29cb4b9c4b3bc845a2dbb
+  - enabled: 1
+    path: Assets/Scenes/GamePlay.unity
+    guid: 9f8fb8b698753bb45874772ba7ab29e3
   m_configObjects: {}
