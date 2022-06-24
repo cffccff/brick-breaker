@@ -22,18 +22,8 @@ public class Block : MonoBehaviour
     [SerializeField] List<GameObject> listOfPotion;
     //chance to drop potion
     void Start()
-    {
-        // selects other game object without SCENE binding: programatically via API
-        _levelController = FindObjectOfType<LevelController>();
-        _soundPosition = FindObjectOfType<Camera>().transform.position;
-
-        // increment the block counter if the block's breakable
-     
-        if (CompareTag("Breakable")) _levelController.IncrementBlocksCounter();
-
-       
-     
-
+    { 
+         _soundPosition = FindObjectOfType<Camera>().transform.position;
     }
     
     /**
@@ -99,13 +89,12 @@ public class Block : MonoBehaviour
     {
         // adds player points
         var gameState = FindObjectOfType<GameSession>();  // singleton
+        _levelController = LevelController.Instance;
         gameState.AddToPlayerScore(maxHits);
-
-        // plays VFX and SFX for the destruction
-        PlayDestructionEffects();
-
         // increments destroyed blocks of the level
         _levelController.DecrementBlocksCounter();
+        // plays VFX and SFX for the destruction
+        PlayDestructionEffects();
         DropPotion();
     }
     private void DropPotion()
@@ -149,8 +138,8 @@ public class Block : MonoBehaviour
 
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
-      // this.gameObject.SetActive(false);
-      Destroy(this.gameObject);
+       this.gameObject.SetActive(false);
+      //Destroy(this.gameObject);
        
     }
 

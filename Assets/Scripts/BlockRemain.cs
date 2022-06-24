@@ -6,7 +6,6 @@ public class BlockRemain : MonoBehaviour
 {
     private static BlockRemain _instance;
     public static BlockRemain Instance => _instance;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,13 +16,8 @@ public class BlockRemain : MonoBehaviour
         }
 
         //first instance should be kept and do NOT destroy it on load
-        _instance = this;
-         DontDestroyOnLoad(_instance);
+         _instance = this;
+        DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -129,8 +129,6 @@ namespace MarchingBytes {
 			//first instance should be kept and do NOT destroy it on load
 			instance = this;
 			 DontDestroyOnLoad(instance);
-			//set instance
-			//instance = this;
 			//check for duplicate names
 			CheckForDuplicatePoolNames();
 			//create pools

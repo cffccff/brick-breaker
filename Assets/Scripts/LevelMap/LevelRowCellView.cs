@@ -15,13 +15,7 @@ using UnityEngine.UI;
         public Image unlockImage;
         public int level=-1;
    
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(PlayerPrefs.GetString("currentLevel"));
-        }
-    }
+
     /// <summary>
     /// This function just takes the Demo data and displays it
     /// </summary>
@@ -63,8 +57,6 @@ using UnityEngine.UI;
             {
                 star.SetActive(false);
             }
-          //  star.SetActive(data.isLock);
-          //  unlockImage.enabled = !data.isLock;
             if (level != 1)
             {
                 level = int.Parse(data.levelTxt);

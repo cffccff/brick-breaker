@@ -13,33 +13,36 @@ public class Pool : MonoBehaviour
     private static Pool _instance;
     public static Pool Instance => _instance;
     private GameObject go;
-    List<GameObject> goList = new List<GameObject>();
+   public List<GameObject> goList = new List<GameObject>();
     private void Awake()
     {
         // this is not the first instance so destroy it!
         if (_instance != null && _instance != this)
         {
-            Destroy(this.gameObject);
+            _instance = this;
             return;
         }
-
         //first instance should be kept and do NOT destroy it on load
         _instance = this;
-       //    DontDestroyOnLoad(_instance);
-
-
-
+        matrix = new int[maxRow, maxCol];
+        count = 0;
+        LoadBlockFromCSV();
     }
     // Start is called before the first frame update
     void Start()
     {
        
-        matrix = new int[maxRow, maxCol];
-        count = 0;
-        LoadBlockFromCSV();
     }
    
-
+    public int GetTotalBreakableBrick()
+    {
+        int total = 0;
+        for(int i = 0; i < goList.Count; i++)
+        {
+            if (goList[i].tag.StartsWith("Breakable")) total++;
+        }
+        return total;
+    }
     public void ReturnToPoolAction()
     {
         foreach (GameObject go in goList)
@@ -51,23 +54,12 @@ public class Pool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            go = EasyObjectPool.instance.GetObjectFromPool("brick1", new Vector2(5, 5), Quaternion.identity);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            go = EasyObjectPool.instance.GetObjectFromPool("brick2", new Vector2(10, 10), Quaternion.identity);
-        }
+      
     }
     public int[,] ReadCSVFile()
     {
-        Debug.Log("Before filename");
         string level = PlayerPrefs.GetInt("SelectedLevel").ToString();
-        Debug.Log("Level in this file:" + level);
-        // string fileName = "Assets/CSV/level_1.csv";
         string fileName = "Assets/CSV/level_" + level + ".csv";
-        Debug.Log("Pass filename");
         StreamReader streamReader = new StreamReader(fileName);
         bool endOfFile = false;
 
@@ -105,7 +97,7 @@ public class Pool : MonoBehaviour
         matrix = ReadCSVFile();
 
         SetUpBlock();
-
+        Debug.Log("List Go is populated with Count is:"+goList.Count);
     }
     public void SetUpBlock()
     {
@@ -119,7 +111,6 @@ public class Pool : MonoBehaviour
 
                 if (matrix[i, j] == 1)
                 {
-                    // Instantiate(breakableBlockHit1, new Vector2(Xaxis, Yaxis), Quaternion.identity).transform.parent = blocks.transform;
                      go = EasyObjectPool.instance.GetObjectFromPool("brick1", new Vector2(Xaxis, Yaxis), Quaternion.identity);
                     goList.Add(go);
                     //  EnableBreakableBlockHit1(number);

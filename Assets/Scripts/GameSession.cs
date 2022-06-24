@@ -19,7 +19,6 @@ public class GameSession : MonoBehaviour
     public int PlayerLives { get; set; }
     public int PointsPerBlock { get; set; }
     public float GameSpeed { get; set; }
-    private Scene scene;
     public Ball _ball;
 
   
@@ -33,27 +32,16 @@ public class GameSession : MonoBehaviour
         // this is not the first instance so destroy it!
         if (_instance != null && _instance != this)
         {
-            Destroy(this.gameObject);
+            _instance = this;
+           // Destroy(this.gameObject);
             return;
         }
-
         //first instance should be kept and do NOT destroy it on load
         _instance = this;
         // DontDestroyOnLoad(_instance);
-       
-        scene = SceneManager.GetActiveScene();
-      
-
-    }
-    public int GetSceneLevel(Scene scene)
-    {
-        string name = scene.name;
-        name = name.Substring(5, name.Length - 5);
-        return int.Parse(name);
     }
     private void SetValueGameSession()
     {
-        //   GameLevel = GetSceneLevel(scene);
         GameLevel = PlayerPrefs.GetInt("SelectedLevel");
         PlayerLives = 4;
         PointsPerBlock = 200;
@@ -88,13 +76,7 @@ public class GameSession : MonoBehaviour
         playerScoreText.text = this.PlayerScore.ToString();
         gameLevelText.text = this.GameLevel.ToString();
         playerLivesText.text = this.PlayerLives.ToString();
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log(_levelController.GetBlocksCounter());
-          
-
-
-        }
+      
 
     }
 
@@ -110,51 +92,5 @@ public class GameSession : MonoBehaviour
    
    
     
-    //public void DisableAllBlock(int number)
-    //{
-    //    breakableBlockHit1 = blocks.transform.Find("BreakableBlockHit1_" + number).gameObject;
-    //    breakableBlockHit1.SetActive(false);
-    //    breakableBlockHit2 = blocks.transform.Find("BreakableBlockHit2_" + number).gameObject;
-    //    breakableBlockHit2.SetActive(false);
-    //    breakableBlockHealth2Hit = blocks.transform.Find("BreakableBlockHealth2Hit_" + number).gameObject;
-    //    breakableBlockHealth2Hit.SetActive(false);
-    //    unbreakableBlock = blocks.transform.Find("UnbreakableBlock_" + number).gameObject;
-    //    unbreakableBlock.SetActive(false);
-    //}
-    //public void EnableBreakableBlockHit1(int number)
-    //{
-    //    breakableBlockHit2 = blocks.transform.Find("BreakableBlockHit2_" + number).gameObject;
-    //    breakableBlockHit2.SetActive(false);
-    //    breakableBlockHealth2Hit = blocks.transform.Find("BreakableBlockHealth2Hit_" + number).gameObject;
-    //    breakableBlockHealth2Hit.SetActive(false);
-    //    unbreakableBlock = blocks.transform.Find("UnbreakableBlock_" + number).gameObject;
-    //    unbreakableBlock.SetActive(false);
-    //}
-    //public void EnableUnBreakableBlock(int number)
-    //{
-    //    breakableBlockHit1 = blocks.transform.Find("BreakableBlockHit1_" + number).gameObject;
-    //    breakableBlockHit1.SetActive(false);
-    //    breakableBlockHit2 = blocks.transform.Find("BreakableBlockHit2_" + number).gameObject;
-    //    breakableBlockHit2.SetActive(false);
-    //    breakableBlockHealth2Hit = blocks.transform.Find("BreakableBlockHealth2Hit_" + number).gameObject;
-    //    breakableBlockHealth2Hit.SetActive(false);
-    //}
-    //public void EnableBreakableBlockHit2(int number)
-    //{
-    //    breakableBlockHit1 = blocks.transform.Find("BreakableBlockHit1_" + number).gameObject;
-    //    breakableBlockHit1.SetActive(false);
-    //    breakableBlockHealth2Hit = blocks.transform.Find("BreakableBlockHealth2Hit_" + number).gameObject;
-    //    breakableBlockHealth2Hit.SetActive(false);
-    //    unbreakableBlock = blocks.transform.Find("UnbreakableBlock_" + number).gameObject;
-    //    unbreakableBlock.SetActive(false);
-    //}
-    //public void EnableBreakableBlockHealth2Hit(int number)
-    //{
-    //    breakableBlockHit1 = blocks.transform.Find("BreakableBlockHit1_" + number).gameObject;
-    //    breakableBlockHit1.SetActive(false);
-    //    breakableBlockHit2 = blocks.transform.Find("BreakableBlockHit2_" + number).gameObject;
-    //    breakableBlockHit2.SetActive(false);
-    //    unbreakableBlock = blocks.transform.Find("UnbreakableBlock_" + number).gameObject;
-    //    unbreakableBlock.SetActive(false);
-    //}
+    
 }
