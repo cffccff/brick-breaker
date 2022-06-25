@@ -297,8 +297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.005004883, y: 460}
-  m_SizeDelta: {x: 1820, y: 25.565498}
+  m_AnchoredPosition: {x: -10.532, y: 460}
+  m_SizeDelta: {x: 1194.7, y: 25.565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237987943
 MonoBehaviour:
@@ -1029,7 +1029,6 @@ MonoBehaviour:
     type: 3}
   totalStarTxt: {fileID: 1123627714}
   numberOfCellsPerRow: 4
-  totalLevel: 40
 --- !u!1 &1665869765
 GameObject:
   m_ObjectHideFlags: 0

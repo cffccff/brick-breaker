@@ -66,7 +66,7 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
         _data = new SmallList<LevelData>();
         int currentLevel;
         int totalStar = 0;
-        // PlayerPrefs.DeleteAll();
+       //  PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("currentLevel"))
         {
             currentLevel = PlayerPrefs.GetInt("currentLevel");
