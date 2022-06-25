@@ -25,7 +25,14 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
     public EnhancedScrollerCellView cellViewPrefab;
     public TextMeshProUGUI totalStarTxt;
     public int numberOfCellsPerRow = 4;
-    public int totalLevel = 40;
+    public static int totalLevel = 40;
+    /// <summary>
+    /// for set up list like 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13 .....
+    /// hold references to each row sub cell
+    /// </summary>
+    bool isRevesed = false;
+    int count = 0;
+    private List<LevelData> list1 = new List<LevelData>();
     /// <summary>
     /// Be sure to set up your references to the scroller after the Awake function. The 
     /// scroller does some internal configuration in its own Awake function. If you need to
@@ -70,41 +77,71 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
             currentLevel = PlayerPrefs.GetInt("currentLevel");
 
         }
-        if (currentLevel == 1)
+        //order display level
+        for (int i = 1; i <= totalLevel; i++)
         {
-            _data.Add(new LevelData() { levelTxt = "1", isUnLock = true, isPass = false });
-            for (var i = 2; i <= totalLevel; i++)
+
+            if (isRevesed == false)
             {
-                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = false, isPass = false });
+             
+                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
+
+                count++;
+
+            }
+            else
+            {
+
+                list1.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
+                count++;
+            }
+            if (count == 4)
+            {
+               
+                isRevesed = !isRevesed;
+                count = 0;
+                list1.Reverse();
+                foreach(LevelData item in list1)
+                {
+                    _data.Add(item);
+                }
+                list1.Clear();
+            }
+
+        }
+        //set logic active/pass of status of a level in _data level
+        if(currentLevel == 1)
+        {
+           
+            for(int i = 1; i < _data.Count; i++)
+            {
+              
+                _data[i].isPass = false;
+                _data[i].isUnLock = false;
             }
         }
         else
         {
-            for (var i = 1; i <= totalLevel; i++)
+            for (int i = 0; i < _data.Count; i++)
             {
-                // stages that pass
-                if (i < currentLevel)
+                if (int.Parse(_data[i].levelTxt) < currentLevel)
                 {
                     totalStar += 3;
-                    _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = true });
+                    _data[i].isPass = true;
+                    _data[i].isUnLock = true;
                 }
-                //stages that unlocked but not pass yet
-                else if (i == currentLevel)
+                else if (int.Parse(_data[i].levelTxt) == currentLevel)
                 {
-                    _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
+                    _data[i].isPass = false;
+                    _data[i].isUnLock = true;
                 }
-                //stages that locked
                 else
                 {
-                    _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = false, isPass = false });
+                    _data[i].isPass = false;
+                    _data[i].isUnLock = false;
                 }
-                
             }
         }
-       
-                
-        
-
         // tell the scroller to reload now that we have the data
         scroller.ReloadData();
         totalStarTxt.text = totalStar.ToString();
@@ -133,7 +170,7 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
     /// <returns>The size of the cell</returns>
     public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
     {
-        return 200f;
+        return 300f;
     }
 
     /// <summary>

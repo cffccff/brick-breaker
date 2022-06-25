@@ -14,8 +14,8 @@ using UnityEngine.UI;
         public GameObject star;
         public Image unlockImage;
         public int level=-1;
-   
-
+        public Image line_v;
+         
     /// <summary>
     /// This function just takes the Demo data and displays it
     /// </summary>
@@ -33,6 +33,7 @@ using UnityEngine.UI;
                 {
                     text.text = "Tutorial";
                     level = 1;
+                text.fontSize = 30;
                 }
                 else
                 {
@@ -61,7 +62,14 @@ using UnityEngine.UI;
             {
                 level = int.Parse(data.levelTxt);
             }
-           
+            if (int.Parse(data.levelTxt) % 4 == 0&& int.Parse(data.levelTxt)!=LevelMapController.totalLevel)
+            {
+                line_v.enabled = true;
+            }
+            else
+            {
+                line_v.enabled = false;
+            }
 
 
         }
@@ -81,6 +89,7 @@ using UnityEngine.UI;
         }
 
     }
+    
     }
 
 

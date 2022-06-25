@@ -7,4 +7,5 @@ public class LevelData
     public string levelTxt;
     public bool isUnLock;
     public bool isPass;
+   
 }
