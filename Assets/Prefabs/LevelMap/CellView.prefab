@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 69540088055610357}
   - component: {fileID: 6289025672306015120}
   - component: {fileID: 369734777904686864}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3321746312387153896}
   - component: {fileID: 2937759442417883493}
   - component: {fileID: 510533739121994558}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelHolder_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 8863257674947385281}
   - component: {fileID: 5526208406957181312}
   - component: {fileID: 2658699099075019708}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: line_v
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83, y: -164.96164}
-  m_SizeDelta: {x: 140.813, y: 269.9232}
+  m_AnchoredPosition: {x: 88, y: 156.16385}
+  m_SizeDelta: {x: 140.813, y: 218.2509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5526208406957181312
 CanvasRenderer:
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 2586945835421477367}
   - component: {fileID: 2210005575436286867}
   - component: {fileID: 945535957968716084}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: IsUnlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692811196626571756}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStarHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 3145339010853265937}
   - component: {fileID: 1035052176520602382}
   - component: {fileID: 7013809108634304232}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: line_v
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,8 +573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -164.96164}
-  m_SizeDelta: {x: 140.813, y: 269.9232}
+  m_AnchoredPosition: {x: -28, y: 153}
+  m_SizeDelta: {x: 140.813, y: 218.2509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1035052176520602382
 CanvasRenderer:
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580335534267803466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 7256807330669069242}
   - component: {fileID: 3183123025187028682}
   - component: {fileID: 6465116026822332480}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 3446155870773462110}
   - component: {fileID: 2974351854543844972}
   - component: {fileID: 710841079943916003}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 2597427056566570239}
   - component: {fileID: 8763349175986125436}
   - component: {fileID: 5691674927091436900}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 8049816497328609384}
   - component: {fileID: 1978014023392455470}
   - component: {fileID: 4347639898008478930}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 9118065202267333602}
   - component: {fileID: 6527279360001327532}
   - component: {fileID: 204938202554258495}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelHolder_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1131,7 +1131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3415275463209278025}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStarHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1172,7 +1172,7 @@ GameObject:
   - component: {fileID: 5340752673843550876}
   - component: {fileID: 2994783049542473420}
   - component: {fileID: 4332568801958977596}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1248,7 +1248,7 @@ GameObject:
   - component: {fileID: 6717312305151339101}
   - component: {fileID: 7781639253177669378}
   - component: {fileID: 7438671404214567810}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 4278103463851575468}
   - component: {fileID: 2601535854897045417}
   - component: {fileID: 449203231608125933}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: IsUnlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 6554964259166569616}
   - component: {fileID: 4272457690517029016}
   - component: {fileID: 8430472484666991045}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,7 +1474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12385121558487332}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStarHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1515,7 @@ GameObject:
   - component: {fileID: 7793467691120966241}
   - component: {fileID: 2778170444641468637}
   - component: {fileID: 2125971572840741506}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 7715936372052477561}
   - component: {fileID: 497423366742328632}
   - component: {fileID: 7702747218027328355}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: line_v
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,8 +1615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -164.96164}
-  m_SizeDelta: {x: 140.813, y: 269.9232}
+  m_AnchoredPosition: {x: 13, y: 156.16388}
+  m_SizeDelta: {x: 140.813, y: 218.2509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &497423366742328632
 CanvasRenderer:
@@ -1633,7 +1633,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4538424993302699403}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1667,7 +1667,7 @@ GameObject:
   - component: {fileID: 3028324527530292951}
   - component: {fileID: 2704036386738683117}
   - component: {fileID: 2325705295744314798}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1743,7 +1743,7 @@ GameObject:
   - component: {fileID: 1890181908940162464}
   - component: {fileID: 4737827103359974705}
   - component: {fileID: 4586174961610750453}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: line_v
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1757,7 +1757,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5009003421222989372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1767,8 +1767,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -61.2221, y: -164.96158}
-  m_SizeDelta: {x: 140.813, y: 269.9232}
+  m_AnchoredPosition: {x: -56.2221, y: 156.16385}
+  m_SizeDelta: {x: 140.813, y: 218.2509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4737827103359974705
 CanvasRenderer:
@@ -1819,7 +1819,7 @@ GameObject:
   - component: {fileID: 2246396363204563091}
   - component: {fileID: 8696480785405687382}
   - component: {fileID: 7825622202891219773}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1954,7 +1954,7 @@ GameObject:
   - component: {fileID: 6270312347695293068}
   - component: {fileID: 8659669135913055774}
   - component: {fileID: 5587661271612693677}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelHolder_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2033,7 +2033,7 @@ GameObject:
   - component: {fileID: 810281241231707780}
   - component: {fileID: 3620780373411242140}
   - component: {fileID: 2355897713257024896}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2107,7 +2107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7480235911938624426}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStarHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,7 +2148,7 @@ GameObject:
   - component: {fileID: 8302355660441633970}
   - component: {fileID: 3512501112179433160}
   - component: {fileID: 344129149380421085}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: IsUnlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2224,7 +2224,7 @@ GameObject:
   - component: {fileID: 7517542574458116797}
   - component: {fileID: 8821770241840467593}
   - component: {fileID: 7371525351085187910}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2359,7 +2359,7 @@ GameObject:
   - component: {fileID: 4448392876825771658}
   - component: {fileID: 7508676105816856480}
   - component: {fileID: 623012089604223194}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelHolder_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 5759369023778309432}
   - component: {fileID: 7977634883059809075}
   - component: {fileID: 927209623114514587}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 1537296754858476624}
   - component: {fileID: 9026994581341242695}
   - component: {fileID: 2003765194277161790}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: IsUnlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2649,7 +2649,7 @@ GameObject:
   - component: {fileID: 7198540967185543367}
   - component: {fileID: 6648388155480012346}
   - component: {fileID: 5885496932769335421}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2857,7 +2857,7 @@ GameObject:
   - component: {fileID: 2184802017021670720}
   - component: {fileID: 4301478411194426457}
   - component: {fileID: 3877562083771377127}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelStar_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

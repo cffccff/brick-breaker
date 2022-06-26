@@ -11,7 +11,7 @@ public class LevelCellView : EnhancedScrollerCellView
     /// This function just takes the Demo data and displays it
     /// </summary>
     /// <param name="data"></param>
-    public void SetData(ref SmallList<LevelData> data, int startingIndex)
+    public void SetData(ref List<LevelData> data, int startingIndex)
     {
         // loop through the sub cells to display their data (or disable them if they are outside the bounds of the data)
         for (var i = 0; i < rowCellViews.Length; i++)

@@ -15,7 +15,6 @@ using UnityEngine.UI;
         public Image unlockImage;
         public int level=-1;
         public Image line_v;
-         
     /// <summary>
     /// This function just takes the Demo data and displays it
     /// </summary>
@@ -64,11 +63,13 @@ using UnityEngine.UI;
             }
             if (int.Parse(data.levelTxt) % 4 == 0&& int.Parse(data.levelTxt)!=LevelMapController.totalLevel)
             {
-                line_v.enabled = true;
+                 line_v.enabled = true;
+              
             }
             else
             {
-                line_v.enabled = false;
+              
+                  line_v.enabled = false;
             }
 
 

@@ -12,12 +12,16 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
     /// Internal representation of our data. Note that the scroller will never see
     /// this, so it separates the data from the layout using MVC principles.
     /// </summary>
-    private SmallList<LevelData> _data;
+    private List<LevelData> _data;
     /// <summary>
     /// This is our scroller we will be a delegate for
     /// </summary>
     public EnhancedScroller scroller;
+    public EnhancedScroller.TweenType vScrollerTweenType = EnhancedScroller.TweenType.immediate;
+    public float vScrollerTweenTime = 0f;
 
+    public EnhancedScroller.TweenType hScrollerTweenType = EnhancedScroller.TweenType.immediate;
+    public float hScrollerTweenTime = 0f;
     /// <summary>
     /// This will be the prefab of each cell in our scroller. The cell view will
     /// hold references to each row sub cell
@@ -30,7 +34,7 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
     /// for set up list like 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13 .....
     /// hold references to each row sub cell
     /// </summary>
-    bool isRevesed = false;
+    bool isRevesed = true;
     int count = 0;
     private List<LevelData> list1 = new List<LevelData>();
     /// <summary>
@@ -63,7 +67,7 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
     private void LoadData()
     {
         // set up some simple data
-        _data = new SmallList<LevelData>();
+        _data = new List<LevelData>();
         int currentLevel;
         int totalStar = 0;
        //  PlayerPrefs.DeleteAll();
@@ -81,19 +85,19 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
         for (int i = 1; i <= totalLevel; i++)
         {
 
-            if (isRevesed == false)
+            if (isRevesed == true)
             {
-             
-                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
-
+                list1.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
                 count++;
+                
 
             }
             else
             {
+                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
 
-                list1.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
                 count++;
+
             }
             if (count == 4)
             {
@@ -101,14 +105,16 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
                 isRevesed = !isRevesed;
                 count = 0;
                 list1.Reverse();
-                foreach(LevelData item in list1)
-                {
-                    _data.Add(item);
-                }
+                _data.AddRange(list1);
+                //foreach(LevelData item in list1)
+                //{
+                //    _data.Add(item);
+                //}
                 list1.Clear();
             }
 
         }
+        _data.Reverse();
         //set logic active/pass of status of a level in _data level
         if(currentLevel == 1)
         {
@@ -145,8 +151,19 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
         // tell the scroller to reload now that we have the data
         scroller.ReloadData();
         totalStarTxt.text = totalStar.ToString();
+        JumpButton_OnClick();
     }
+    public void JumpButton_OnClick()
+    {
+        int jumpDataIndex = PlayerPrefs.GetInt("currentLevel");
 
+        // extract the integer from the input text
+
+        // jump to the index
+        scroller.JumpToDataIndex(jumpDataIndex, 0f, 0f, false,vScrollerTweenType, vScrollerTweenTime, null, EnhancedScroller.LoopJumpDirectionEnum.Closest);
+          
+       
+    }
     #region EnhancedScroller Handlers
 
     /// <summary>
