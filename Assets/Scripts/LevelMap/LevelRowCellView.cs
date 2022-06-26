@@ -32,13 +32,14 @@ using UnityEngine.UI;
                 {
                     text.text = "Tutorial";
                     level = 1;
-                text.fontSize = 30;
+                    text.fontSize = 30;
                 }
                 else
                 {
                     // set the text if the cell is inside the data range
                     text.text = data.levelTxt;
-                }
+                text.fontSize = 50;
+            }
             if (data.isUnLock == true)
             {
                 unlockImage.enabled = false;

@@ -70,60 +70,65 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
         _data = new List<LevelData>();
         int currentLevel;
         int totalStar = 0;
-       //  PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("currentLevel"))
         {
             currentLevel = PlayerPrefs.GetInt("currentLevel");
         }
         else
         {
+           
             PlayerPrefs.SetInt("currentLevel", 1);
             currentLevel = PlayerPrefs.GetInt("currentLevel");
 
         }
-        //order display level
+        //order display level and populated the list
         for (int i = 1; i <= totalLevel; i++)
         {
 
             if (isRevesed == true)
             {
-                list1.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
+                list1.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = false, isPass = false });
                 count++;
-                
+
 
             }
             else
             {
-                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = true, isPass = false });
+                _data.Add(new LevelData() { levelTxt = i.ToString(), isUnLock = false, isPass = false });
 
                 count++;
 
             }
             if (count == 4)
             {
-               
+
                 isRevesed = !isRevesed;
                 count = 0;
                 list1.Reverse();
                 _data.AddRange(list1);
-                //foreach(LevelData item in list1)
-                //{
-                //    _data.Add(item);
-                //}
                 list1.Clear();
             }
 
         }
         _data.Reverse();
         //set logic active/pass of status of a level in _data level
-        if(currentLevel == 1)
+        if (currentLevel == 1)
         {
-           
-            for(int i = 1; i < _data.Count; i++)
+            
+            for (int i = 0; i < _data.Count-1; i++)
             {
-              
-                _data[i].isPass = false;
-                _data[i].isUnLock = false;
+                if(i==_data.Count - 4)
+                {
+                    _data[i].isPass = false;
+                    _data[i].isUnLock = true;
+                }
+                else
+                {
+                    _data[i].isPass = false;
+                    _data[i].isUnLock = false;
+                }
+               
             }
         }
         else
@@ -151,12 +156,17 @@ public class LevelMapController : MonoBehaviour, IEnhancedScrollerDelegate
         // tell the scroller to reload now that we have the data
         scroller.ReloadData();
         totalStarTxt.text = totalStar.ToString();
-        JumpButton_OnClick();
+        ViewCurrentLevel();
     }
-    public void JumpButton_OnClick()
+    public void ViewCurrentLevel()
     {
         int jumpDataIndex = PlayerPrefs.GetInt("currentLevel");
+        jumpDataIndex = (40 - jumpDataIndex) / 4;
+       
 
+
+
+        Debug.Log(jumpDataIndex);
         // extract the integer from the input text
 
         // jump to the index
